@@ -15,7 +15,14 @@ mongoose.connect(process.env.MONGO_URI, {
 
 // Define Mongoose Schema and Model
 const EmployeeSchema = new mongoose.Schema({
-  // Your schema fields
+  name: String,
+  employeeType: String,
+  grossPay: Number,
+  loanRepayment: Number,
+  netSalary: Number,
+  wht: Number, // Withholding Tax
+  proratedDays: Number,
+  proratedPay: Number,
 });
 
 const Employee = mongoose.model("Employee", EmployeeSchema);
