@@ -24,13 +24,16 @@ router.get("/", async (req, res) => {
 });
 
 //Modify (PUT)
-router.put("/", async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
     const updatedEmployee = await Employee.findByIdAndUpdate(
       req.params.id,
       req.body,
       { new: true }
     );
+    if (!updatedEmployee) {
+      return res.status(404).json({ message: "Employee not found" });
+    }
     res.json(updatedEmployee);
   } catch (err) {
     res.status(400).json({ message: err.message });
